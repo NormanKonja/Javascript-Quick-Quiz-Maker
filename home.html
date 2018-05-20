@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	</head>
+	<body>
+
+		<form id="form" >
+		<p>Normans Simple Quiz App</p>
+		</form>
+		<button onclick="checkAnswers()">Click me</button>
+
+		<script>
+			var questionArr = {
+				questions:["What is the last name of greatest basketball player ever?",
+									 "What is the name of the programming laguage used for this app?",
+									 "What is the name of Detroits NBA Team?"],
+				answers:["jordan",
+								 "javascript",
+							 	 "pistons"],
+			};
+			function Question(){
+				var questions = questionArr["questions"];
+				var element = document.getElementById("form");
+				for(var i = 0; i < questions.length;i++){
+					var label = document.createElement("label");
+					var question = document.createTextNode(questions[i]);
+					label.appendChild(question);
+					label.appendChild(document.createElement("br"));
+					var input = document.createElement("input");
+					element.appendChild(label);
+					element.appendChild(input);
+					element.appendChild(document.createElement("br"));
+				};
+			};
+			function checkAnswers(){
+				var total_questions = 0;
+				var answers = questionArr["answers"];
+				var score = 0;
+				for(var i = 0; i < answers.length;i++){
+					if (answers[i] == document.getElementsByTagName("input")[i].value.toLowerCase()){
+					score++;
+				};
+				total_questions++;
+			};
+			var percentage = ((score/total_questions)*100).toFixed(2);
+			document.write("Your score is "+score+" out of "+ total_questions +"<br>");
+			document.write(percentage+"%");
+		};
+			Question(questionArr)
+		</script>
+
+	</body>
+</html>
